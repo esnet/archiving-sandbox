@@ -9,16 +9,19 @@ services:
   rabbit:
     image: rabbitmq:3-management
     env_file: .env
+    expose:
+      - "15672"
+      - "5671"
     ports:
-      - "15672:15672"
-      - "5671:5671"
       - "5672:5672"
   elasticsearch:
        image: elasticsearch:7.6.2
        env_file: .env
-       ports:
-         - "9200:9200"
-         - "9300:9300"
+       expose:
+         - "9200"
+         - "9300"
+       volumes:
+         - es_data:/usr/share/elasticsearch/data
 
   pselastic_setup:
     image: perfsonar/pselastic_setup:latest
@@ -33,9 +36,9 @@ services:
        env_file: .env
        depends_on: 
         - pselastic_setup
-       ports:
-         - "5044:5044"
-         - "9600:9600"
+       expose:
+         - "5044"
+         - "9600"
        volumes:
            - ./logstash_pipeline/pipeline:/usr/share/logstash/pipeline/
            - ./logstash_pipeline/pipelines.yml:/usr/share/logstash/config/pipelines.yml
@@ -50,5 +53,9 @@ services:
     volumes:
        - ./elmond/elmond:/app
        - ./elmond/conf:/etc/elmond
-    ports:
-      - "5000:5000"
+    expose:
+      - "5000"
+
+volumes:
+  es_data:
+    driver: local
