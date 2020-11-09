@@ -37,7 +37,8 @@ services:
          - "5044:5044"
          - "9600:9600"
        volumes:
-           - ./logstash_pipeline:/usr/share/logstash/pipeline/
+           - ./logstash_pipeline/pipeline:/usr/share/logstash/pipeline/
+           - ./logstash_pipeline/pipelines.yml:/usr/share/logstash/config/pipelines.yml
   kibana:
        image: kibana:7.6.2
        env_file: .env
