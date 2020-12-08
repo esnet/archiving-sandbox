@@ -4,3 +4,5 @@
   path.config: "/usr/share/logstash/pipeline/ss"
 - pipeline.id: tcptrace
   path.config: "/usr/share/logstash/pipeline/tcptrace"
+- pipeline.id: jobmeta
+  path.config: "/usr/share/logstash/pipeline/jobmeta"
