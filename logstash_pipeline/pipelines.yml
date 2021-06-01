@@ -1,3 +1,5 @@
+- pipeline.id: iperf3
+  path.config: "/usr/share/logstash/pipeline/iperf3"
 - pipeline.id: pscheduler
   path.config: "/usr/share/logstash/pipeline/pscheduler"
 - pipeline.id: ss
